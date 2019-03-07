@@ -1,18 +1,21 @@
 package com.arjun.gateway.bean.auth;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document
+@Entity
+@Table(name = "jwt_token")
 public class JwtToken {
+
     @Id
     private String token;
 
-    public JwtToken(String token) {
-        this.token = token;
+    public JwtToken() {
     }
 
-    public JwtToken() {
+    public JwtToken(String token) {
+        this.token = token;
     }
 
     public String getToken() {

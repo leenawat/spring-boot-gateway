@@ -1,10 +1,15 @@
 package com.arjun.gateway.bean.auth;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Role {
+    @Id
+    @GeneratedValue
     private Integer id;
+
     private String role;
 
     public Integer getId() {
