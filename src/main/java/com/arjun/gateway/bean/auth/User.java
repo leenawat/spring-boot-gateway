@@ -1,16 +1,17 @@
 package com.arjun.gateway.bean.auth;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
-@Document
+@Entity
 public class User {
+
     @Id
     private String id;
+
     @Email(message = "*Please provide a valid email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
@@ -20,11 +21,16 @@ public class User {
     private String name;
     @NotEmpty(message = "*Please provide your last name")
     private String lastName;
-    private Integer active=1;
-    private boolean isLoacked=false;
-    private boolean isExpired=false;
-    private boolean isEnabled=true;
-    private Set<Role> role;
+    private Integer active = 1;
+    private boolean isLoacked = false;
+    private boolean isExpired = false;
+    private boolean isEnabled = true;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> role = new HashSet<>();
+    ;
 
     public String getId() {
         return id;
