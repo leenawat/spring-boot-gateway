@@ -42,3 +42,6 @@ INSERT INTO test.user_roles
 (user_id, role_id)
 VALUES('1', 1);
 ```
+
+email=demo@example.com
+password=password
